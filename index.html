@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Wifi Setup</title>
+        <style>
+       body{
+         text-align:center;
+      }
+      .toggle {
+         position: relative;
+         display: block;
+         width: 80px;
+         height: 40px;
+         padding: 3px;
+         margin: auto;
+         border-radius: 50px;
+         cursor: pointer;
+      }
+      .toggle-input {
+         position: absolute;
+         top: 0;
+         left: 0;
+         opacity: 0;
+      }
+      .toggle-label {
+         position: relative;
+         display: block;
+         height: inherit;
+         font-size: 12px;
+         background: red;
+         border-radius: inherit;
+         box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 3px
+         rgba(0, 0, 0, 0.15);
+      }
+      .toggle-label:before,
+      .toggle-label:after {
+         position: absolute;
+         top: 50%;
+         color: black;
+         margin-top: -.5em;
+         line-height: 1;
+      }
+      .toggle-label:before {
+         content: attr(data-off);
+         right: 11px;
+         color: #fff;
+         text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+      }
+      .toggle-label:after {
+         content: attr(data-on);
+         left: 11px;
+         color: #fff;
+         text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+         opacity: 0;
+      }
+      .toggle-input:checked~.toggle-label {
+         background: green;
+      }
+      .toggle-input:checked~.toggle-label:before {
+         opacity: 0;
+      }
+      .toggle-input:checked~.toggle-label:after {
+         opacity: 1;
+      }
+      .toggle-handle {
+         position: absolute;
+         top: 4px;
+         left: 4px;
+         width: 38px;
+         height: 38px;
+         background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+         border-radius: 50%;
+      }
+      .toggle-handle:before {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         margin: -6px 0 0 -6px;
+         width: 16px;
+         height: 16px;
+      }
+      .toggle-input:checked~.toggle-handle {
+         left: 44px;
+         box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Transition*/
+      .toggle-label,
+      .toggle-handle {
+         transition: All 0.3s ease;
+         -webkit-transition: All 0.3s ease;
+         -moz-transition: All 0.3s ease;
+         -o-transition: All 0.3s ease;
+      }
+
+      .container-columnas{
+        position: relative;
+      }
+
+      .columa__item{
+        display: inline-block;
+        background-color: gray;
+        width: 100px;
+        border-radius: 10px;
+        /* position: absolute; */
+        left: 20px;
+      }
+
+      /* .columa__item p{
+        margin: 10px;
+      } */
+
+      .columa__item input {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 80px;
+        height: 20px;
+        border: blueviolet solid 2px;
+        border-radius: 3px;
+        text-align: center;
+      }
+
+      .columa__leyenda{
+        display: inline-block;
+        border-radius: 10px;
+        /* position: absolute; */
+        left: 20px;
+        /* margin: 10px; */
+        width: 80px;
+        background-color: papayawhip;
+      }
+
+      .columa__leyenda p{
+        display: inline-block;
+        margin-top: 15px;
+        margin-bottom: 12px;
+      }
+
+      .enviarButton{
+        background-color: rgb(184, 184, 236);
+        width: 150px;
+        height: 25px;
+        border-radius: 10px;
+        /* margin-top: 5px; */
+      }
+
+      h1{
+        display: inline-block;
+        font-size: 20px;
+        margin: 0px;
+      }
+      .tituloColum{
+        font-size: 12px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .columa__item--intervalo{
+        margin-left: 20px;
+        background-color: blueviolet;
+
+      }
+      .tiempoEfecto{
+        display: inline-block;
+        background-color: gray;
+        width: 520px;
+        border-radius: 10px;
+        margin-right: 40px;
+        margin-bottom: 10px;
+      }
+      .tiempoEfecto input{
+        width: 50px;
+        height: 15px;
+        margin: 2px;
+      }
+
+        </style> 
+    </head>
+    <body>
+        <main class='form-signin'> 
+            <h1>LED CONTROL</h1>
+            <form action='/' method='post'>
+                <div class='container-columnas'>      
+                    <div class='columa__leyenda'>
+                        <p>Salida 1</p>
+                        <p>Salida 2</p>
+                        <p>Salida 3</p>
+                        <p>Salida 4</p>
+                        <p>Salida 5</p>
+                        <p>Durac[ms]</p>
+                    </div>            
+                    <div class='columa__item'>
+                        <p class='tituloColum'>Paso 1</p>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s1t1' checked/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s2t1'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s3t1' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s4t1' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s5t1'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <input type='text' name='t1' value='200'>                      
+                    </div>                  
+                    <div  class='columa__item'>
+                        <p class='tituloColum'>Paso 2</p>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s1t2'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s2t2' checked/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s3t2' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s4t2' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s5t2'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <input type='text' name='t2'  value='200'>
+                    </div>
+                    <div  class='columa__item'>
+                        <p class='tituloColum'>Paso 3</p>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s1t3'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s2t3'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s3t3' checked/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s4t3' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s5t3'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <input type='text' name='t3'  value='200'>
+                    </div>
+                    <div  class='columa__item'>
+                        <p class='tituloColum'>Paso 4</p>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s1t4'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s2t4'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s3t4' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s4t4' checked/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s5t4'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <input type='text' name='t4' value='200'>
+                    </div>
+                    <div  class='columa__item'>
+                        <p class='tituloColum'>Paso 5</p>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s1t5'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s2t5'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s3t5' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s4t5' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s5t5'checked/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <input type='text' name='t5'  value='200'>
+                    </div>
+                    <div  class='columa__item columa__item--intervalo'>
+                        <p class='tituloColum'>Estado Intervalo</p>
+                        <label class='toggle'>  
+                            <input class='toggle-input' type='checkbox' name='s1t6'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s2t6'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s3t6' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s4t6' />
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <label class='toggle'>
+                            <input class='toggle-input' type='checkbox' name='s5t6'/>
+                            <span class='toggle-label' data-off='OFF' data-on='ON'></span>
+                            <span class='toggle-handle'></span>
+                        </label>
+                        <input type='text' name='t6'  value='20000'>
+                    </div>
+                </div>   
+                <div class='tiempoEfecto'>
+                    <label for='tefecto'>Tiempo duracion efecto[ms]   </label>
+                    <input type='text' name='tefecto'  value='10000'>                 
+                </div>
+                <br>
+                <input class='enviarButton' type='submit' value='Guardar configuracion'></input>
+            </form>
+        </main>
+    </body>
+</html>
